@@ -9,10 +9,9 @@ router.route("/").get((request, response) => {
     );
 });
 router.route("/save").post((request, response) => {
-  console.log(request);
   const targetURL = request.body.targetURL;
   const payload = request.body.payload;
-  const newAnalysis = new Analysis({ targetURL, payload });
+  const newAnalysis = new Analysis({ targetURL: targetURL, payload: payload });
 
   newAnalysis
     .save()
