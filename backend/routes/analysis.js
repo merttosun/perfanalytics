@@ -9,15 +9,19 @@ router.route("/").get((request, response) => {
     );
 });
 router.route("/save").post((request, response) => {
-  console.log(request);
+  console.log(request.body);
   const targetURL = request.body.targetURL;
   const payload = request.body.payload;
   const newAnalysis = new Analysis({ targetURL, payload });
 
   newAnalysis
     .save()
-    .then(() => response.json("Analysis Added Successfully"))
-    .catch((error) => response.status(400).json("Error: " + err));
+    .then(() => {
+      response.json("Analysis Added Successfully");
+      console.log("respasdonse");
+      console.log("targetURL : ", targetURL);
+    })
+    .catch((error) => response.status(400).json("Error: " + error));
 });
 
 module.exports = router;

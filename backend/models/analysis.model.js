@@ -9,6 +9,9 @@ const analysis_schema = new Schema(
       required: true,
     },
     payload: {
+      resource_data: {
+        type: Array,
+      },
       windowLoad: {
         type: Number,
         required: true,

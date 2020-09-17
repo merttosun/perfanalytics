@@ -3,10 +3,12 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+//TODO ES6 CLASS'A ÇEVİR
+
 require("dotenv").config();
 
 const app = express();
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -21,6 +23,7 @@ mongoose.connect(uri, {
 
 //db connection
 const connection = mongoose.connection;
+
 connection.once("open", () => {
   console.log("## database connection established successfully...");
 });
@@ -28,8 +31,8 @@ connection.on("error", () => {
   console.log("## couldn not connect to database");
 });
 
-const createAnalysisRouter = require("./routes/analysis");
-app.use("/analyzes", createAnalysisRouter);
+const analysisRouter = require("./routes/analysis");
+app.use("/analyzes", analysisRouter);
 
 //run server
 app.listen(port, () => {
