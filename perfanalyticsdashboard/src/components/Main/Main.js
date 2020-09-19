@@ -3,6 +3,7 @@ import Chart from "../Chart/Chart";
 import Table from "../Table/Table";
 import TopBar from "../TopBar/TopBar";
 import Modal from "../Modal/Modal";
+import service from "../../services/service";
 import "./Main.css";
 
 const sites = ["asdasd", "qweqwewqe", "zxxccs", "gftrht"];
@@ -10,7 +11,7 @@ const sites = ["asdasd", "qweqwewqe", "zxxccs", "gftrht"];
 const Main = () => {
   const [isModalOpen, toggleModalStatus] = useState(false);
   const [inspectedChart, setInspectedChart] = useState(null);
-
+  const [responseData, setResponseData] = useState("");
   const handleModalStatus = (value) => {
     toggleModalStatus(value);
   };
@@ -18,9 +19,14 @@ const Main = () => {
     setInspectedChart(chartId);
     toggleModalStatus(true);
   };
-  const handleModalClose = () => {};
+  const fetchAnalyzes = () => {
+    return service.getAnalysis().then((response) => {
+      console.log(response);
+    });
+  };
   return (
     <div className="container">
+      <button onClick={() => fetchAnalyzes()}>fetch button</button>
       <TopBar sites={sites} />
       {/* <SiteSelector sites={sites} /> */}
       <Chart
