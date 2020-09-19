@@ -1,0 +1,29 @@
+.topbar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: calc(40px + 90%);
+  border-radius: 6px 6px 0 0;
+}
+.datetimepickers-wrapper {
+  display: flex;
+}
+.save-config-button {
+  width: 120px;
+  background: #4285f4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  height: 24px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 6px;
+}
+.save-config-button:hover {
+  background: #0353dd;
+  font-size: 13px;
+  transition: all 0.2s linear;
+}

@@ -1,0 +1,33 @@
+.siteselector-wrapper {
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.left-switch-button,
+.right-switch-button {
+  width: 70px;
+  height: 25px;
+  outline: none;
+  border: none;
+
+  text-align: center;
+}
+.left-switch-button {
+  border-radius: 4px 0 0 4px;
+  background: #4285f4;
+  color: white;
+}
+.right-switch-button {
+  border-radius: 0 4px 4px 0;
+  border: 1px solid #4285f4;
+  color: #4285f4;
+}
+.dropdown {
+  height: 25px;
+  outline: none;
+  border-radius: 6px;
+  border: 1px solid #4285f4;
+  width: 300px;
+}
