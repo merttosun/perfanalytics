@@ -9,7 +9,7 @@ const SiteSelector = (props) => {
   const siteArr = props.sites.map((site) => site);
   return (
     <div className="siteselector-wrapper">
-      <label className="">{props.label}</label>
+      <div className="label">{props.label}</div>
       <div className="site-selector">
         <select
           className="dropdown"

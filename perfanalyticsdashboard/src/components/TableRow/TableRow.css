@@ -4,6 +4,7 @@
   display: flex;
   border-bottom: 1px solid #c5c1c1;
   height: 40px;
+  cursor: pointer;
 }
 .darker {
   background: rgb(226, 226, 233);

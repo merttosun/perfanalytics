@@ -8,8 +8,8 @@ const TopBar = (props) => {
     <div className="topbar">
       <SiteSelector label="URL" sites={props.sites} />
       <div className="datetimepickers-wrapper">
-        <DatatimePicker label="From"></DatatimePicker>
-        <DatatimePicker label="To"></DatatimePicker>
+        <DatatimePicker className="from-dtp" label="From"></DatatimePicker>
+        <DatatimePicker className="to-dtp" label="To"></DatatimePicker>
       </div>
       <button className="save-config-button"> Analyze</button>
     </div>

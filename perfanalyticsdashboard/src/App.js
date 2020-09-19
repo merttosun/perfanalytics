@@ -6,7 +6,7 @@ import Main from "./components/Main/Main";
 function App() {
   return (
     <div className="App">
-      <h2>Perf Analytics</h2>
+      <h1>Perf Analytics</h1>
       <Main />
     </div>
   );

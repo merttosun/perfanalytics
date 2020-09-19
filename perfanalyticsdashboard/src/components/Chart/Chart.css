@@ -8,4 +8,22 @@
   /* border: 1px solid #4285f4; */
   box-shadow: 0px 0px 11px 0px rgba(158, 152, 158, 1);
   margin: 20px;
+  background: white;
+}
+.inspect-button {
+  height: 25px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #4285f4;
+  font-weight: bold;
+  cursor: pointer;
+}
+.inspect-button:hover {
+  background: #4285f4;
+  color: white;
+  font-size: 14px;
+  transition: all 0.4s linear;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
