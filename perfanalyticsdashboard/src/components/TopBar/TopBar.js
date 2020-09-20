@@ -54,12 +54,14 @@ const TopBar = (props) => {
         ></DatatimePicker>
       </div>
       <button
+        test-id="between-dates-button"
         className="save-config-button"
         onClick={() => handleAnalyze("between-dates")}
       >
         {props.btn1Txt}
       </button>
       <button
+        test-id="last-thirty-button"
         className="save-config-button"
         onClick={() => handleAnalyze("last-thirty")}
       >
