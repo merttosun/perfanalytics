@@ -1,9 +1,23 @@
 import React from "react";
 import "./DatatimePicker.css";
 
+const convertDate = (date) => {
+  const tzoffset = new Date().getTimezoneOffset() * 60000;
+  const dateWithOffset = new Date(date.getTime() - tzoffset);
+  const value = dateWithOffset.toISOString().slice(0, -5);
+  return value;
+};
+
 const DatatimePicker = (props) => {
+  console.log(props.value);
+
+  const dtpickerValue = convertDate(props.value);
+  const minLimitForSecondDtpicker = convertDate(props.minValue);
+  const maxLimitForFirstDtpicker = convertDate(props.maxValue);
+
+  console.log("dtpickerValue", dtpickerValue);
   const handleDateChange = (e) => {
-    console.log(e.target.value);
+    props.pickerChange(new Date(e.target.value));
   };
   return (
     <div className="datetimepicker-wrapper">
@@ -11,8 +25,17 @@ const DatatimePicker = (props) => {
       <input
         type="datetime-local"
         className="datetimepicker"
-        name="birthdaytime"
-        value={props.data}
+        min={
+          props.type === "to"
+            ? minLimitForSecondDtpicker
+            : convertDate(props.minValue)
+        }
+        max={
+          props.tpe === "from"
+            ? maxLimitForFirstDtpicker
+            : convertDate(new Date())
+        }
+        value={dtpickerValue}
         onChange={(e) => handleDateChange(e)}
       ></input>
     </div>

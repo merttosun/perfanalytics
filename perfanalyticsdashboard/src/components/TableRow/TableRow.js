@@ -4,10 +4,10 @@ import "./TableRow.css";
 const TableRow = (props) => {
   return (
     <tr className={props.even ? "table-row darker" : "table-row"}>
-      <td className="row-column">qwe</td>
-      <td className="row-column">asd</td>
-      <td className="row-column">asd</td>
-      <td className="row-column">asd</td>
+      <td className="row-column">{props.data.url}</td>
+      <td className="row-column">{props.data.duration}</td>
+      <td className="row-column">{props.data.type}</td>
+      <td className="row-column">{props.data.transferSize}</td>
     </tr>
   );
 };

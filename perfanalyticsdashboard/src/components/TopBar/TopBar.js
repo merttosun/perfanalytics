@@ -4,32 +4,67 @@ import DatatimePicker from "../DatatimePicker/DatatimePicker";
 import "./TopBar.css";
 
 const TopBar = (props) => {
-  const [isThirtyChecked, setIsThirtyChecked] = useState(false);
-  const handleSiteSelection = (event) => {
-    props.siteSelected(event);
+  const [fromDate, setFromDate] = useState(new Date("2020-09-18T10:20:30Z"));
+  const [toDate, setToDate] = useState(new Date());
+  const [siteUrl, setSiteUrl] = useState("");
+
+  const handleThirtyMinsCheck = () => {
+    let now = new Date();
+    setFromDate(new Date(now.setMinutes(now.getMinutes() - 30)));
+    setToDate(new Date());
   };
-  const handleThirtyMinsCheck = (value) => {
-    setIsThirtyChecked(value);
-    props.onCheckboxChanged(value);
+
+  const handleAnalyze = (type) => {
+    if (type === "last-thirty") {
+      handleThirtyMinsCheck();
+    }
+    let payload = {
+      siteUrl,
+      fromDate,
+      toDate,
+    };
+    props.analyzeClicked(payload);
   };
+
   return (
     <div className="topbar">
       <SiteSelector
         label="URL"
         sites={props.sites}
-        siteSelected={(event) => handleSiteSelection(event)}
+        siteSelected={(event) => setSiteUrl(event)}
       />
       <div className="datetimepickers-wrapper">
-        <input
-          type="checkbox"
-          checked={isThirtyChecked}
-          onChange={() => handleThirtyMinsCheck(!isThirtyChecked)}
-        />
-        <label for="vehicle1">Last 30 mins</label>
-        <DatatimePicker className="from-dtp" label="From"></DatatimePicker>
-        <DatatimePicker className="to-dtp" label="To"></DatatimePicker>
+        <DatatimePicker
+          className="from-dtp"
+          label="From"
+          value={fromDate}
+          maxValue={toDate}
+          minValue={new Date("2020-09-12T10:20:30Z")}
+          pickerChange={(date) => setFromDate(date)}
+          type={"from"}
+        ></DatatimePicker>
+        <DatatimePicker
+          className="to-dtp"
+          label="To"
+          value={toDate}
+          type={"to"}
+          minValue={fromDate}
+          maxValue={new Date()}
+          pickerChange={(date) => setToDate(date)}
+        ></DatatimePicker>
       </div>
-      <button className="save-config-button"> Analyze</button>
+      <button
+        className="save-config-button"
+        onClick={() => handleAnalyze("between-dates")}
+      >
+        {props.btn1Txt}
+      </button>
+      <button
+        className="save-config-button"
+        onClick={() => handleAnalyze("last-thirty")}
+      >
+        {props.btn2Txt}
+      </button>
     </div>
   );
 };

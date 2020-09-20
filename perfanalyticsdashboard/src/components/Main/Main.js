@@ -4,17 +4,19 @@ import Table from "../Table/Table";
 import TopBar from "../TopBar/TopBar";
 import Modal from "../Modal/Modal";
 import Service from "../../services/service";
+import ChartDataModel from "../../models/ChartModel";
 
 import "./Main.css";
 
-const sites = ["asdasd", "qweqwewqe", "zxxccs", "gftrht"];
+const sites = ["http://localhost:3000/", "qweqwewqe", "zxxccs", "gftrht"];
 
 const Main = () => {
   const axios = require("axios");
   const [isModalOpen, toggleModalStatus] = useState(false);
   const [inspectedChart, setInspectedChart] = useState(null);
-  const [dashboardData, setResponseData] = useState("");
-  const [selectedSiteUrl, setSelectedSite] = useState("");
+  const [chartsData, setChartsData] = useState({});
+  const [tableLoadingStatus, setTableLoadingStatus] = useState(false);
+  const [tableBulkData, setTableData] = useState([]);
   const handleModalStatus = (value) => {
     toggleModalStatus(value);
   };
@@ -24,37 +26,106 @@ const Main = () => {
     toggleModalStatus(true);
   };
 
-  const prepareDashboardData = (bulkData) => {
-    console.log("bulkData", bulkData);
+  const fetchAnalyzes = async (params) => {
+    setTableLoadingStatus(true);
+    const res = await axios.get(`http://localhost:5000/api/analyzes/`, {
+      params: {
+        siteUrl: "http://localhost:3000/",
+        fromDate: params.fromDate,
+        toDate: params.toDate,
+      },
+    });
+    if (res.data) {
+      prepareChartsData(res.data);
+    }
   };
 
-  const fetchAnalyzes = async () => {
-    console.log("fetchAnalyzes", selectedSiteUrl);
-    const res = await axios.get(`http://localhost:5000/api/analyzes/`, {
-      params: { siteUrl: "http://localhost:3000/" },
+  const prepareChartsData = (bigData) => {
+    let ttfbChartInstance = new ChartDataModel({
+      bgColor: "#4285f4",
+      fill: false,
+      label: "TTFB",
     });
-    console.log(res);
+    console.log(ttfbChartInstance);
+    let fcpChartInstance = new ChartDataModel({
+      bgColor: "#10DEBF",
+      fill: false,
+      label: "FCP",
+    });
+    let domLoadChartInstance = new ChartDataModel({
+      bgColor: "#FF9756",
+      fill: true,
+      label: "DOM Load",
+    });
+    let windowLoadChartInstance = new ChartDataModel({
+      bgColor: "#9C17DE",
+      fill: true,
+      label: "Window Load",
+    });
+    let resourcesData = [];
+    bigData.forEach((data) => {
+      console.log(data);
+      let date = new Date(data.createdAt);
+      let h = (date.getHours() < 10 ? "0" : "") + date.getHours();
+      let m = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+      let newData = h + ":" + m;
+      ttfbChartInstance.datasets[0].data.push(data.payload.ttfb_data);
+      ttfbChartInstance.labels.push(newData);
+      fcpChartInstance.datasets[0].data.push(data.payload.fcp_data);
+      fcpChartInstance.labels.push(newData);
+      windowLoadChartInstance.datasets[0].data.push(data.payload.windowLoad);
+      windowLoadChartInstance.labels.push(newData);
+      domLoadChartInstance.datasets[0].data.push(data.payload.domLoad);
+      domLoadChartInstance.labels.push(newData);
+      data.payload.resource_data.forEach((r) => {
+        resourcesData.push(r);
+      });
+      setTableData(resourcesData);
+      setTableLoadingStatus(false);
+    });
+    setChartsData({
+      ttfbChartInstance,
+      fcpChartInstance,
+      domLoadChartInstance,
+      windowLoadChartInstance,
+    });
   };
 
   return (
     <div className="container">
       <button onClick={() => fetchAnalyzes()}>fetch button</button>
-      <TopBar sites={sites} siteSelected={(event) => setSelectedSite(event)} />
-      {/* <SiteSelector sites={sites} /> */}
+      <TopBar
+        sites={sites}
+        analyzeClicked={(payload) => fetchAnalyzes(payload)}
+        btn1Txt={"Analyze Between Dates"}
+        btn2Txt={"Analyze Last 30 Mins"}
+      />
       <Chart
-        chartId={1}
-        inspected={handleChartInspect}
+        inspected={() => handleChartInspect("ttfbChartInstance")}
         label="TTFB"
         showInspectButton
+        data={chartsData.ttfbChartInstance}
         description="TTFB, which stands for time to first byte, is the amount of time it takes from when a client makes an HTTP request to it receiving its first byte of data from the web server."
       />
-      <Chart chartId={2} inspected={handleChartInspect} showInspectButton />
-      <Chart chartId={3} inspected={handleChartInspect} showInspectButton />
-      <Chart chartId={4} inspected={handleChartInspect} showInspectButton />
-      <Table isLoading={false} />
+      <Chart
+        inspected={() => handleChartInspect("fcpChartInstance")}
+        showInspectButton
+        data={chartsData.fcpChartInstance}
+      />
+      <Chart
+        inspected={() => handleChartInspect("domLoadChartInstance")}
+        showInspectButton
+        data={chartsData.domLoadChartInstance}
+      />
+      <Chart
+        inspected={() => handleChartInspect("windowLoadChartInstance")}
+        showInspectButton
+        data={chartsData.windowLoadChartInstance}
+      />
+      <Table isLoading={tableLoadingStatus} data={tableBulkData} />
       {isModalOpen ? (
         <Modal
-          chartId={inspectedChart}
+          chartData={chartsData[inspectedChart]}
           closeModal={(e) => handleModalStatus(e)}
         />
       ) : (

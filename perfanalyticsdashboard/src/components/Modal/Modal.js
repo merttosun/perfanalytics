@@ -12,7 +12,7 @@ const Modal = (props) => {
         X
       </div>
       <Chart
-        chartId={props.chartId}
+        data={props.chartData}
         className="inspected-chart"
         showInspectButton={false}
       />

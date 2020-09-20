@@ -4,6 +4,10 @@
   display: flex;
   border-bottom: 1px solid #c5c1c1;
   height: 40px;
+}
+.table-row:hover {
+  background: #4285f4;
+  color: white;
   cursor: pointer;
 }
 .darker {
