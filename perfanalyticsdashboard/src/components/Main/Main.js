@@ -3,31 +3,43 @@ import Chart from "../Chart/Chart";
 import Table from "../Table/Table";
 import TopBar from "../TopBar/TopBar";
 import Modal from "../Modal/Modal";
-import service from "../../services/service";
+import Service from "../../services/service";
+
 import "./Main.css";
 
 const sites = ["asdasd", "qweqwewqe", "zxxccs", "gftrht"];
 
 const Main = () => {
+  const axios = require("axios");
   const [isModalOpen, toggleModalStatus] = useState(false);
   const [inspectedChart, setInspectedChart] = useState(null);
-  const [responseData, setResponseData] = useState("");
+  const [dashboardData, setResponseData] = useState("");
+  const [selectedSiteUrl, setSelectedSite] = useState("");
   const handleModalStatus = (value) => {
     toggleModalStatus(value);
   };
+
   const handleChartInspect = (chartId) => {
     setInspectedChart(chartId);
     toggleModalStatus(true);
   };
-  const fetchAnalyzes = () => {
-    return service.getAnalysis().then((response) => {
-      console.log(response);
-    });
+
+  const prepareDashboardData = (bulkData) => {
+    console.log("bulkData", bulkData);
   };
+
+  const fetchAnalyzes = async () => {
+    console.log("fetchAnalyzes", selectedSiteUrl);
+    const res = await axios.get(`http://localhost:5000/api/analyzes/`, {
+      params: { siteUrl: "http://localhost:3000/" },
+    });
+    console.log(res);
+  };
+
   return (
     <div className="container">
       <button onClick={() => fetchAnalyzes()}>fetch button</button>
-      <TopBar sites={sites} />
+      <TopBar sites={sites} siteSelected={(event) => setSelectedSite(event)} />
       {/* <SiteSelector sites={sites} /> */}
       <Chart
         chartId={1}

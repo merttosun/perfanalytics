@@ -5,6 +5,7 @@ const SiteSelector = (props) => {
   const [selectedSiteUrl, setSelectedSiteUrl] = useState("qwe");
   const handleSiteSelect = (e) => {
     setSelectedSiteUrl(e.target.value);
+    props.siteSelected(selectedSiteUrl);
   };
   const siteArr = props.sites.map((site) => site);
   return (

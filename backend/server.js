@@ -8,6 +8,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -32,7 +36,7 @@ connection.on("error", () => {
 });
 
 const analysisRouter = require("./routes/analysis");
-app.use("/analyzes", analysisRouter);
+app.use("/api/analyzes", analysisRouter);
 
 //run server
 app.listen(port, () => {
