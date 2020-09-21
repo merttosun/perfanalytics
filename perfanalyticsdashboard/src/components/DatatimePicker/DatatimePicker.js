@@ -2,6 +2,7 @@ import React from "react";
 import "./DatatimePicker.css";
 
 const convertDate = (date) => {
+  console.log(date);
   const tzoffset = new Date().getTimezoneOffset() * 60000;
   const dateWithOffset = new Date(date.getTime() - tzoffset);
   const value = dateWithOffset.toISOString().slice(0, -5);
@@ -20,7 +21,10 @@ const DatatimePicker = (props) => {
     props.pickerChange(new Date(e.target.value));
   };
   return (
-    <div className="datetimepicker-wrapper">
+    <div
+      className="datetimepicker-wrapper"
+      data-testid={props.label === "test 1" ? "fromdtp-id" : "todtp-id"}
+    >
       <label className="picker-label">{props.label}</label>
       <input
         type="datetime-local"

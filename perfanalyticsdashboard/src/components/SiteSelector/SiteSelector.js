@@ -9,7 +9,7 @@ const SiteSelector = (props) => {
   };
   const siteArr = props.sites.map((site) => site);
   return (
-    <div className="siteselector-wrapper">
+    <div className="siteselector-wrapper" data-testid="siteselector-id">
       <div className="label">{props.label}</div>
       <div className="site-selector">
         <select

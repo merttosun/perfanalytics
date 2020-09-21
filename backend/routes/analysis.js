@@ -1,6 +1,9 @@
 const router = require("express").Router();
 let Analysis = require("../models/analysis.model");
 
+//mongodbde cektigim alanları indexlemem lazım
+//performans artırıyormuş
+//compound index -> hep  aynı parametrelerle sorgu attıgımız için üç parametreyi aynı anda indexliyoruz,
 router.route("/").get((request, response) => {
   console.log(request.query);
   // const fromDate = manipulateDate(request.query.fromDate);

@@ -27,13 +27,14 @@ const TopBar = (props) => {
   };
 
   return (
-    <div className="topbar">
+    <div className="topbar" data-testid="topbar">
       <SiteSelector
+        data-testid="siteselector"
         label="URL"
         sites={props.sites}
         siteSelected={(event) => setSiteUrl(event)}
       />
-      <div className="datetimepickers-wrapper">
+      <div className="datetimepickers-wrapper" data-testid="from-dtp-id">
         <DatatimePicker
           className="from-dtp"
           label="From"
@@ -41,27 +42,27 @@ const TopBar = (props) => {
           maxValue={toDate}
           minValue={new Date("2020-09-12T10:20:30Z")}
           pickerChange={(date) => setFromDate(date)}
-          type={"from"}
+          type="from"
         ></DatatimePicker>
         <DatatimePicker
           className="to-dtp"
           label="To"
           value={toDate}
-          type={"to"}
+          type="to"
           minValue={fromDate}
           maxValue={new Date()}
           pickerChange={(date) => setToDate(date)}
         ></DatatimePicker>
       </div>
       <button
-        test-id="between-dates-button"
+        datatest-id="between-dates-button"
         className="save-config-button"
         onClick={() => handleAnalyze("between-dates")}
       >
         {props.btn1Txt}
       </button>
       <button
-        test-id="last-thirty-button"
+        datatest-id="last-thirty-button"
         className="save-config-button"
         onClick={() => handleAnalyze("last-thirty")}
       >

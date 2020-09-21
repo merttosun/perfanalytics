@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 //TODO ES6 CLASS'A ÇEVİR
 
-require("dotenv").config();
+require("dotenv").config(); //config objesi alıp içinde path alabiliyor
 
 const app = express();
 app.use((req, res, next) => {

@@ -7,7 +7,7 @@ import "./Table.css";
 const Table = (props) => {
   const [activePage, setActivePage] = useState(1);
   return (
-    <div className="resources-table">
+    <div className="resources-table" data-testid="table">
       <tr className="header-row">
         <th>Url</th>
         <th>Duration</th>

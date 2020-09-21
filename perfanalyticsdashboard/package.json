@@ -5,8 +5,10 @@
   "dependencies": {
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "babel-plugin-import": "^1.13.0",
     "dotenv": "^8.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -15,8 +17,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "test:coverage": "react-scripts test --coverage --watchAll"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,11 +37,12 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^9.5.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.4",
-    "jest": "^26.4.2",
-    "jest-dom": "^4.0.0",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-jest": "^26.3.0",
+    "jest": "^24.9.0",
+    "react-app-rewired": "^2.1.5",
     "react-test-renderer": "^16.13.1"
   }
 }

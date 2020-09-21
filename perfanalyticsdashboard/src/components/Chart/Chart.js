@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Doughnut } from "react-chartjs-2";
+import React from "react";
 import { Line } from "react-chartjs-2";
 import "./Chart.css";
 
@@ -33,7 +32,7 @@ const Chart = (props) => {
     props.inspected();
   };
   return (
-    <div className="chart-wrapper">
+    <div className="chart-wrapper" data-testid="chart">
       <Line data={props.data} className="line-chart" />
       {props.showInspectButton ? (
         <button className="inspect-button" onClick={() => handleInspect()}>
