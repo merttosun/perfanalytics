@@ -8,7 +8,11 @@ const Modal = (props) => {
   };
   return (
     <div className="modal" data-testid="modal">
-      <div className="close-label" onClick={() => handleClose()}>
+      <div
+        className="close-label"
+        onClick={() => handleClose()}
+        data-testid="close-modal-button"
+      >
         X
       </div>
       <Chart

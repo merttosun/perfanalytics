@@ -35,6 +35,7 @@ const Main = () => {
         toDate: params.toDate,
       },
     });
+    console.log(params);
     if (res.data) {
       prepareChartsData(res.data);
     }
@@ -92,7 +93,7 @@ const Main = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-testid="main">
       <button onClick={() => fetchAnalyzes()}>fetch button</button>
       <TopBar
         sites={sites}
@@ -104,23 +105,23 @@ const Main = () => {
         inspected={() => handleChartInspect("ttfbChartInstance")}
         label="TTFB"
         showInspectButton
-        data={chartsData.ttfbChartInstance}
+        data={chartsData.ttfbChartInstance || {}}
         description="TTFB, which stands for time to first byte, is the amount of time it takes from when a client makes an HTTP request to it receiving its first byte of data from the web server."
       />
       <Chart
         inspected={() => handleChartInspect("fcpChartInstance")}
         showInspectButton
-        data={chartsData.fcpChartInstance}
+        data={chartsData.fcpChartInstance || {}}
       />
       <Chart
         inspected={() => handleChartInspect("domLoadChartInstance")}
         showInspectButton
-        data={chartsData.domLoadChartInstance}
+        data={chartsData.domLoadChartInstance || {}}
       />
       <Chart
         inspected={() => handleChartInspect("windowLoadChartInstance")}
         showInspectButton
-        data={chartsData.windowLoadChartInstance}
+        data={chartsData.windowLoadChartInstance || {}}
       />
       <Table
         headerColumnTxt_1="URL"

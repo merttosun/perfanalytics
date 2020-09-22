@@ -16,6 +16,7 @@ const SiteSelector = (props) => {
           className="dropdown"
           value={selectedSiteUrl}
           onChange={(e) => handleSiteSelect(e)}
+          data-testid="sites-dropdown"
         >
           {siteArr.map((siteUrl, key) => (
             <option value={siteUrl} key={key}>

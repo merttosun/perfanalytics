@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SiteSelector from "../SiteSelector/SiteSelector";
-import DatatimePicker from "../DatatimePicker/DatatimePicker";
+import DatetimePicker from "../DatetimePicker/DatetimePicker";
 import "./TopBar.css";
 
 const TopBar = (props) => {
@@ -35,7 +35,7 @@ const TopBar = (props) => {
         siteSelected={(event) => setSiteUrl(event)}
       />
       <div className="datetimepickers-wrapper" data-testid="from-dtp-id">
-        <DatatimePicker
+        <DatetimePicker
           className="from-dtp"
           label="From"
           value={fromDate}
@@ -43,8 +43,8 @@ const TopBar = (props) => {
           minValue={new Date("2020-09-12T10:20:30Z")}
           pickerChange={(date) => setFromDate(date)}
           type="from"
-        ></DatatimePicker>
-        <DatatimePicker
+        ></DatetimePicker>
+        <DatetimePicker
           className="to-dtp"
           label="To"
           value={toDate}
@@ -52,17 +52,17 @@ const TopBar = (props) => {
           minValue={fromDate}
           maxValue={new Date()}
           pickerChange={(date) => setToDate(date)}
-        ></DatatimePicker>
+        ></DatetimePicker>
       </div>
       <button
-        datatest-id="between-dates-button"
+        data-testid="between-dates-button"
         className="save-config-button"
         onClick={() => handleAnalyze("between-dates")}
       >
         {props.btn1Txt}
       </button>
       <button
-        datatest-id="last-thirty-button"
+        data-testid="last-thirty-button"
         className="save-config-button"
         onClick={() => handleAnalyze("last-thirty")}
       >

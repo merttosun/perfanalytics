@@ -1,8 +1,9 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Modal from "../../components/Modal/Modal";
 import Chart from "../../components/Chart/Chart";
-import renderer from "react-test-renderer";
+
+jest.mock("react-chartjs-2", () => ({ Line: () => null }));
 
 const data = {
   labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -30,7 +31,7 @@ const data = {
   ],
 };
 
-it("topbar renders without crashing", () => {
+it("modal renders without crashing", () => {
   const { getByTestId } = render(
     <Modal chartData={data} closeModal={() => {}} />
   );
@@ -38,10 +39,18 @@ it("topbar renders without crashing", () => {
   expect(modalContainer).toBeInTheDocument();
 });
 
-it("qweqweq renders without crashing", () => {
-  const { getByTestId } = renderer(
-    <Chart inspected={() => {}} showInspectButton data={data} />
+it("modal closing without crashing", () => {
+  const { getByTestId } = render(
+    <Modal chartData={data} closeModal={() => {}} />
   );
-  const chartContainer = getByTestId("chart");
-  expect(chartContainer).toBeInTheDocument();
+  const button = getByTestId("close-modal-button");
+  fireEvent(
+    button,
+    new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+    })
+  );
+
+  expect(() => getByTestId("modal")).not.toThrow();
 });

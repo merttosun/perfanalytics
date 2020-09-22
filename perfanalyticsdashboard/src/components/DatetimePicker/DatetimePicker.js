@@ -1,15 +1,17 @@
 import React from "react";
-import "./DatatimePicker.css";
+import "./DatetimePicker.css";
 
 const convertDate = (date) => {
-  console.log(date);
+  if (typeof date === "undefined") {
+    return new Date("2020-09-12T10:20:30Z");
+  }
   const tzoffset = new Date().getTimezoneOffset() * 60000;
   const dateWithOffset = new Date(date.getTime() - tzoffset);
   const value = dateWithOffset.toISOString().slice(0, -5);
   return value;
 };
 
-const DatatimePicker = (props) => {
+const DatetimePicker = (props) => {
   console.log(props.value);
 
   const dtpickerValue = convertDate(props.value);
@@ -47,4 +49,4 @@ const DatatimePicker = (props) => {
   );
 };
 
-export default DatatimePicker;
+export default DatetimePicker;
