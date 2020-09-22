@@ -9,10 +9,10 @@ const Table = (props) => {
   return (
     <div className="resources-table" data-testid="table">
       <tr className="header-row">
-        <th>Url</th>
-        <th>Duration</th>
-        <th>Type</th>
-        <th>Transfer Size</th>
+        <th>{props.headerColumnTxt_1}</th>
+        <th>{props.headerColumnTxt_2}</th>
+        <th>{props.headerColumnTxt_3}</th>
+        <th>{props.headerColumnTxt_4}</th>
       </tr>
       <div className="table-content">
         {props.isLoading ? (
@@ -33,7 +33,7 @@ const Table = (props) => {
         )}
       </div>
       <Paginator
-        pageCount={props.data.length % 10}
+        pageCount={parseInt(props.data.length / 10)}
         activePage={activePage}
         disabled={props.isLoading}
         onPageChange={(page) => setActivePage(page)}

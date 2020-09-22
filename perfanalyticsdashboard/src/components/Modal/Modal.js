@@ -7,7 +7,7 @@ const Modal = (props) => {
     props.closeModal(false);
   };
   return (
-    <div className="modal">
+    <div className="modal" data-testid="modal">
       <div className="close-label" onClick={() => handleClose()}>
         X
       </div>

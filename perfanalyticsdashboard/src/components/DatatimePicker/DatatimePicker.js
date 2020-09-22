@@ -27,6 +27,7 @@ const DatatimePicker = (props) => {
     >
       <label className="picker-label">{props.label}</label>
       <input
+        data-testid={props.label === "test 1" ? "fromdtp-input" : "todtp-input"}
         type="datetime-local"
         className="datetimepicker"
         min={

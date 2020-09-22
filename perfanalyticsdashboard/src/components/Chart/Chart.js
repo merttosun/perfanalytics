@@ -1,7 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import "./Chart.css";
-
 // const data = {
 //   labels: ["January", "February", "March", "April", "May", "June", "July"],
 //   datasets: [
@@ -27,7 +26,7 @@ import "./Chart.css";
 //     },
 //   ],
 // };
-const Chart = (props) => {
+export default function Chart(props) {
   const handleInspect = () => {
     props.inspected();
   };
@@ -43,6 +42,6 @@ const Chart = (props) => {
       )}
     </div>
   );
-};
+}
 
-export default Chart;
+// export default Chart;

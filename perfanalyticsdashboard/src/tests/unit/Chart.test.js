@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { render } from "@testing-library/react";
 import Chart from "../../components/Chart/Chart";
 import { Line } from "react-chartjs-2";
-it("topbar renders without crashing", () => {
+import renderer from "react-test-renderer";
+
+it("qweqweq renders without crashing", () => {
   const data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [

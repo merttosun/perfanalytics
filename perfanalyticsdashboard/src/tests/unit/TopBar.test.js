@@ -1,9 +1,11 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { render } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 import TopBar from "../../components/TopBar/TopBar";
 import SiteSelector from "../../components/SiteSelector/SiteSelector";
 import DatatimePicker from "../../components/DatatimePicker/DatatimePicker";
+
+afterEach(cleanup);
 
 it("topbar renders without crashing", () => {
   const { getByTestId } = render(
@@ -16,6 +18,8 @@ it("topbar renders without crashing", () => {
   );
   const topbarContainer = getByTestId("topbar");
   expect(topbarContainer).toBeInTheDocument();
+  expect(topbarContainer).toHaveTextContent("test btn 1 text");
+  expect(topbarContainer).toHaveTextContent("test btn 1 text");
 });
 
 it("site selecteor renders without crashing", () => {
@@ -59,3 +63,16 @@ it("datetimepicker 2 renders without crashing", () => {
   const dt2Container = getByTestId("todtp-id");
   expect(dt2Container).toBeInTheDocument();
 });
+
+// it("set dates correctly", () => {
+//   const { getByTestId } = render(
+//     <TopBar
+//       btn1Text={"test btn 1 text"}
+//       btn2Txt={"test btn 1 text"}
+//       sites={["www.trendyol.com"]}
+//       analyzeClicked={() => {}}
+//     />
+//   );
+//   fireEvent.click(getByTestId("between-dates-button"));
+//   expect(getByTestId("from-dtp-id"));
+// });

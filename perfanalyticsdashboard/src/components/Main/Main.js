@@ -122,7 +122,14 @@ const Main = () => {
         showInspectButton
         data={chartsData.windowLoadChartInstance}
       />
-      <Table isLoading={tableLoadingStatus} data={tableBulkData} />
+      <Table
+        headerColumnTxt_1="URL"
+        headerColumnTxt_2="Duration"
+        headerColumnTxt_3="Type"
+        headerColumnTxt_4="Transfer Size"
+        isLoading={tableLoadingStatus}
+        data={tableBulkData}
+      />
       {isModalOpen ? (
         <Modal
           chartData={chartsData[inspectedChart]}
