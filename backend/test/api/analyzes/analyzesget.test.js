@@ -1,10 +1,12 @@
 process.env.ENV = "test";
+
 const expect = require("chai").expect;
 const request = require("supertest");
 const app = require("../../../app");
 const conn = require("../../../dbconnection");
+//www.youtube.com/watch?v=7VNgjfmv_fE
 
-describe("POST /sites/save ", () => {
+describe("get /api/analyzes", () => {
   before((done) => {
     conn
       .connect()
@@ -19,21 +21,22 @@ describe("POST /sites/save ", () => {
       .catch((err) => done(err));
   });
 
-  const siteUrl = "http://qwxeqqqwqwweweeqweqw";
+  const targetURL = "http://localhost:3000/";
+  const fromDate = "2020-09-20T10:20:30.000Z";
+  const toDate = "2020-09-24T23:00:00.123Z";
 
-  it("OK, creating a new sites works", (done) => {
-    console.log("app", app);
+  it("OK, getting analyzes work", (done) => {
     request(app)
-      .post("/api/sites/save")
-      .send({ siteUrl })
+      .get("/api/analyzes")
+      .query({ targetURL, fromDate, toDate })
       .then((res) => {
         const body = res.body;
-        console.log("body", body);
-        expect(body).to.contain.property("_id");
-        expect(body).to.contain.property("siteURL");
-        expect(body.siteUrl).to.not.equal("");
+        console.log("RESPONSE", res);
+        expect(res.statusCode).to.equal(200);
         done();
       })
-      .catch((error) => done(error));
+      .catch((error) => {
+        expect(error.statusCode).to.equal(400);
+      });
   });
 });

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.43% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/14</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.43% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/14</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -81,40 +81,43 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const router = require("express").Router();
 let Analysis = require("../models/analysis.model");
 &nbsp;
-router.route("/").get(<span class="fstat-no" title="function not covered" >(r</span>equest, response) =&gt; {
-<span class="cstat-no" title="statement not covered" >  Analysis.find({</span>
+router.route("/").get((request, response) =&gt; {
+  console.log(request.query.fromDate, request.query.toDate);
+  Analysis.find({
     targetURL: request.query.siteUrl,
     createdAt: { $gte: request.query.fromDate, $lte: request.query.toDate },
   })
-    .then(<span class="fstat-no" title="function not covered" >(a</span>nalyzes) =&gt; <span class="cstat-no" title="statement not covered" >response.json(analyzes).send(analyzes))</span>
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >response.status(500).send(error))</span>;
+    .then((analyzes) =&gt; response.json(analyzes).send(analyzes))
+    .catch((error) =&gt; response.status(400).send(error));
 });
 &nbsp;
 router.route("/save").post((request, response) =&gt; {
@@ -125,7 +128,7 @@ router.route("/save").post((request, response) =&gt; {
   newAnalysis
     .save()
     .then((analysis) =&gt; response.status(201).send(analysis))
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >response.status(400).send(error))</span>;
+    .catch((error) =&gt; response.status(400).send(error));
 });
 &nbsp;
 module.exports = router;
@@ -136,7 +139,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Sep 25 2020 01:22:55 GMT+0300 (GMT+03:00)
+                at Fri Sep 25 2020 02:41:09 GMT+0300 (GMT+03:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>

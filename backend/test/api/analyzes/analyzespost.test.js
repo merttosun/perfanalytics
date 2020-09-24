@@ -45,17 +45,23 @@ describe("POST /api", () => {
       .send({ targetURL, payload })
       .then((res) => {
         const body = res.body;
-        console.log("body", body);
         expect(body).to.contain.property("_id");
         expect(body).to.contain.property("targetURL");
         expect(body).to.contain.property("createdAt");
         expect(body).to.contain.property("updatedAt");
-        expect(body).to.contain.property("payload");
-        expect(body.payload).to.contain.property("ttfb_data");
-        expect(body.payload).to.contain.property("fcp_data");
-        expect(body.payload).to.contain.property("domLoad");
-        expect(body.payload).to.contain.property("windowLoad");
-        expect(body.payload).to.contain.property("resource_data");
+        done();
+      })
+      .catch((error) => done(error));
+  });
+
+  it("Fail, required params (targetURL)", (done) => {
+    console.log("app", app);
+    request(app)
+      .post("/api/analyzes/save")
+      .send({ payload })
+      .then((res) => {
+        const body = res.body;
+        expect(body.errors.targetURL.name).to.equal("ValidatorError");
         done();
       })
       .catch((error) => done(error));

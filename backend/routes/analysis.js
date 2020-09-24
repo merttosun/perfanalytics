@@ -2,12 +2,13 @@ const router = require("express").Router();
 let Analysis = require("../models/analysis.model");
 
 router.route("/").get((request, response) => {
+  console.log(request.query.fromDate, request.query.toDate);
   Analysis.find({
     targetURL: request.query.siteUrl,
     createdAt: { $gte: request.query.fromDate, $lte: request.query.toDate },
   })
     .then((analyzes) => response.json(analyzes).send(analyzes))
-    .catch((error) => response.status(500).send(error));
+    .catch((error) => response.status(400).send(error));
 });
 
 router.route("/save").post((request, response) => {

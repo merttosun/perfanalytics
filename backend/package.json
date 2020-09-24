@@ -37,7 +37,7 @@
       "models",
       "coverage",
       "node_modules",
-      "tests"
+      "test"
     ],
     "all": true
   },
