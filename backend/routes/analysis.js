@@ -18,7 +18,7 @@ router.route("/save").post((request, response) => {
   newAnalysis
     .save()
     .then((analysis) => response.status(201).send(analysis))
-    .catch((error) => response.status(400).send(err));
+    .catch((error) => response.status(400).send(error));
 });
 
 module.exports = router;

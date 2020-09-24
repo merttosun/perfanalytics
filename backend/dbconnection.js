@@ -4,6 +4,28 @@ const uri = process.env.ATLAS_URI;
 
 function connect() {
   return new Promise((resolve, reject) => {
+    // if (process.env.ENV === "test") {
+    //   console.log("test env");
+    //   const Mockgoose = require("mockgoose").Mockgoose;
+    //   const mockgoose = new Mockgoose(mongoose);
+    //   mockgoose.prepareStorage().then(() => {
+    //     mongoose.connect
+    //       .connect(uri, {
+    //         useNewUrlParser: true,
+    //         useCreateIndex: true,
+    //         useUnifiedTopology: true,
+    //       })
+    //       .then((res, err) => {
+    //         if (err) {
+    //           console.log("db connection failed");
+    //           return reject(err);
+    //         } else {
+    //           console.log("connected db successfully");
+    //           resolve();
+    //         }
+    //       });
+    //   });
+    // } else {
     mongoose
       .connect(uri, {
         useNewUrlParser: true,
@@ -19,6 +41,7 @@ function connect() {
           resolve();
         }
       });
+    // }
   });
 }
 

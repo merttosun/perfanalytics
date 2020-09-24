@@ -17,8 +17,8 @@ router.route("/save").post((request, response) => {
   });
   newSite
     .save()
-    .then((sites) => response.status(201))
-    .catch((error) => response.status(400));
+    .then((site) => response.status(201).send(site))
+    .catch((error) => response.status(400).send(error));
 });
 
 module.exports = router;

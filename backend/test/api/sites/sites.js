@@ -1,9 +1,10 @@
+process.env.ENV = "test";
 const expect = require("chai").expect;
 const request = require("supertest");
 const app = require("../../../app");
 const conn = require("../../../dbconnection");
 
-describe("POST /apqweqwi", () => {
+describe("POST /sites/save ", () => {
   before((done) => {
     conn
       .connect()
@@ -18,17 +19,19 @@ describe("POST /apqweqwi", () => {
       .catch((err) => done(err));
   });
 
-  const targetURL = "http://qweqxxxxqweqqweweeqweqw";
+  const siteUrl = "http://qwxeqqqwqwweweeqweqw";
 
   it("OK, creating a new sites works", (done) => {
     console.log("app", app);
     request(app)
-      .post("/api/analyzes/save")
-      .send({ targetURL, payload })
+      .post("/api/sites/save")
+      .send({ siteUrl })
       .then((res) => {
         const body = res.body;
         console.log("body", body);
         expect(body).to.contain.property("_id");
+        expect(body).to.contain.property("siteURL");
+        expect(body.siteUrl).to.not.equal("");
         done();
       })
       .catch((error) => done(error));
