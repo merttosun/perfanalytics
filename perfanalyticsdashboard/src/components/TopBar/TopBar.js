@@ -6,17 +6,13 @@ import "./TopBar.css";
 const TopBar = (props) => {
   const [fromDate, setFromDate] = useState(new Date("2020-09-18T10:20:30Z"));
   const [toDate, setToDate] = useState(new Date());
-  const [siteUrl, setSiteUrl] = useState("");
-
-  const handleThirtyMinsCheck = () => {
-    let now = new Date();
-    setFromDate(new Date(now.setMinutes(now.getMinutes() - 30)));
-    setToDate(new Date());
-  };
+  const [siteUrl, setSiteUrl] = useState("http://localhost:3000/");
 
   const handleAnalyze = (type) => {
     if (type === "last-thirty") {
-      handleThirtyMinsCheck();
+      let now = new Date();
+      setFromDate(new Date(now.setMinutes(now.getMinutes() - 30)));
+      setToDate(new Date());
     }
     let payload = {
       siteUrl,

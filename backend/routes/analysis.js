@@ -5,25 +5,15 @@ let Analysis = require("../models/analysis.model");
 //performans artırıyormuş
 //compound index -> hep  aynı parametrelerle sorgu attıgımız için üç parametreyi aynı anda indexliyoruz,
 router.route("/").get((request, response) => {
-  console.log(request.query);
-  // const fromDate = manipulateDate(request.query.fromDate);
-  // const toDate = manipulateDate(request.query.toDate);
-  // console.log("be", fromDate, toDate);
   Analysis.find({
     targetURL: request.query.siteUrl,
     createdAt: { $gte: request.query.fromDate, $lte: request.query.toDate },
   })
     .then((analyzes) => response.json(analyzes))
     .catch((error) =>
-      response.status(400).useChunkedEncodingByDefault("Error: " + error)
+      response.status(500).useChunkedEncodingByDefault("Error: " + error)
     );
 });
-
-const manipulateDate = (date) => {
-  const tzoffset = new Date().getTimezoneOffset() * 60000;
-  const dateWithOffset = new Date(date.getTime() - tzoffset);
-  return dateWithOffset.toISOString().slice(0, -5);
-};
 
 router.route("/save").post((request, response) => {
   const targetURL = request.body.targetURL;
@@ -32,12 +22,8 @@ router.route("/save").post((request, response) => {
 
   newAnalysis
     .save()
-    .then(() => {
-      response.json("Analysis Added Successfully");
-      console.log("respasdonse");
-      console.log("targetURL : ", targetURL);
-    })
-    .catch((error) => response.status(400).json("Error: " + error));
+    .then((analysis) => response.status(201).send(analysis))
+    .catch((error) => response.status(400));
 });
 
 module.exports = router;

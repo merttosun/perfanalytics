@@ -1,44 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const app = require("./app.js");
+const db = require("./dbconnection");
 
-//TODO ES6 CLASS'A ÇEVİR
+const PORT = process.env.PORT || 5000;
 
-require("dotenv").config(); //config objesi alıp içinde path alabiliyor
-
-const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
-const port = process.env.PORT || 5000;
-
-app.use(cors());
-app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
-
-//db connection
-const connection = mongoose.connection;
-
-connection.once("open", () => {
-  console.log("## database connection established successfully...");
-});
-connection.on("error", () => {
-  console.log("## couldn not connect to database");
-});
-
-const analysisRouter = require("./routes/analysis");
-app.use("/api/analyzes", analysisRouter);
-
-//run server
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+db.connect().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port: ${PORT}`);
+  });
 });
