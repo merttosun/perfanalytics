@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-
+//
 const analysis_schema = new Schema(
   {
     targetURL: {
       type: String,
       required: true,
+      index: true,
     },
     payload: {
       resource_data: {
@@ -30,7 +31,7 @@ const analysis_schema = new Schema(
       },
     },
   },
-  { timestamps: true }
+  { timestamps: true, index: true }
 );
 
 const Analysis = mongoose.model("Analysis", analysis_schema);

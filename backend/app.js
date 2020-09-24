@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
-//TODO ES6 CLASS'A ÇEVİR
 const port = process.env.PORT || 5000;
 
 const app = express();
@@ -16,7 +14,10 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const analysisRouter = require("./routes/analysis");
-app.use("/api/analyzes", analysisRouter);
+const sitesRouter = require("./routes/sites");
+app.use("/api/sites", sitesRouter);
+
+const router = require("./routes/analysis");
+app.use("/api/analyzes", router);
 
 module.exports = app;

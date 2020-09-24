@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "nyc mocha --recursive --exit",
+    "test": "nyc mocha --timeout 10000  --recursive --exit",
     "coverage": "nyc report --reporter=text-lcov test"
   },
   "author": "mert.tosun@windowslive.com",

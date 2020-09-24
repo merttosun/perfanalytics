@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>6/15</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>6/15</span>
             </div>
         
             
@@ -81,66 +81,54 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const router = <span class="cstat-no" title="statement not covered" >require("express").Router();</span>
-const { request, response } = <span class="cstat-no" title="statement not covered" >require("express");</span>
-let sites = <span class="cstat-no" title="statement not covered" >require("../models/sites.model");</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >router.route("/").get(<span class="fstat-no" title="function not covered" >(r</span>equest, response) =&gt; {</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const router = require("express").Router();
+let Sites = require("../models/sites.model");
+console.log(Sites);
+router.route("/").get(<span class="fstat-no" title="function not covered" >(r</span>equest, response) =&gt; {
 <span class="cstat-no" title="statement not covered" >  console.log(request.query);</span>
-<span class="cstat-no" title="statement not covered" >  sites</span>
-    .find()
+<span class="cstat-no" title="statement not covered" >  Sites.find()</span>
     .then(<span class="fstat-no" title="function not covered" >(s</span>ites) =&gt; <span class="cstat-no" title="statement not covered" >response.json(sites))</span>
     .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt;
 <span class="cstat-no" title="statement not covered" >      response.status(400).useChunkedEncodingByDefault("Error: " + error)</span>
     );
 });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >router.route("/save").post(<span class="fstat-no" title="function not covered" >(r</span>equest, response) =&gt; {</span>
-  const targetURL = <span class="cstat-no" title="statement not covered" >request.body.siteUrl;</span>
-  const newAnalysis = <span class="cstat-no" title="statement not covered" >new Analysis({</span>
-    targtURL: targetURL,
+router.route("/save").post(<span class="fstat-no" title="function not covered" >(r</span>equest, response) =&gt; {
+  const siteURL = <span class="cstat-no" title="statement not covered" >request.body.siteUrl;</span>
+  const newSite = <span class="cstat-no" title="statement not covered" >new Sites({</span>
+    siteURL,
   });
-<span class="cstat-no" title="statement not covered" >  newAnalysis</span>
+<span class="cstat-no" title="statement not covered" >  newSite</span>
     .save()
-    .then(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      response.json("Analysis Added Successfully");</span>
-<span class="cstat-no" title="statement not covered" >      console.log("respasdonse");</span>
-<span class="cstat-no" title="statement not covered" >      console.log("targetURL : ", targetURL);</span>
-    })
-    .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >response.status(400).json("Error: " + error))</span>;
+    .then(<span class="fstat-no" title="function not covered" >(s</span>ites) =&gt; <span class="cstat-no" title="statement not covered" >response.status(201))</span>
+    .catch(<span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >response.status(400))</span>;
 });
+&nbsp;
+module.exports = router;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,7 +136,7 @@ let sites = <span class="cstat-no" title="statement not covered" >require("../mo
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Sep 24 2020 11:51:16 GMT+0300 (GMT+03:00)
+                at Fri Sep 25 2020 00:48:39 GMT+0300 (GMT+03:00)
             </div>
         </div>
         <script src="../../prettify.js"></script>
