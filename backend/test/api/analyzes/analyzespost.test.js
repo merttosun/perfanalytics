@@ -9,7 +9,7 @@ const conn = require("../../../dbconnection");
 describe("POST /api", () => {
   before((done) => {
     conn
-      .connect()
+      .connect(process.env.ATLAS_URI)
       .then(() => done())
       .catch((err) => done(err));
   });

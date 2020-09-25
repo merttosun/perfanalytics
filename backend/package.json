@@ -34,7 +34,6 @@
       "lcov"
     ],
     "exclude": [
-      "models",
       "coverage",
       "node_modules",
       "test"

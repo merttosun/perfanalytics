@@ -7,7 +7,7 @@ const conn = require("../../../dbconnection");
 describe("POST /sites/save ", () => {
   before((done) => {
     conn
-      .connect()
+      .connect(process.env.ATLAS_URI)
       .then(() => done())
       .catch((err) => done(err));
   });

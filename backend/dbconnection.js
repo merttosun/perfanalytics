@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config(); //config objesi alıp içinde path alabiliyor
-const uri = process.env.ATLAS_URI;
 
-function connect() {
+function connect(URI) {
   return new Promise((resolve, reject) => {
     // if (process.env.ENV === "test") {
     //   console.log("test env");
@@ -27,18 +26,16 @@ function connect() {
     //   });
     // } else {
     mongoose
-      .connect(uri, {
+      .connect(URI, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
       })
       .then((res, err) => {
         if (err) {
-          console.log("db connection failed");
-          return reject(err);
+          reject(err);
         } else {
-          console.log("connected db successfully");
-          resolve();
+          resolve(["db connection done", res]);
         }
       });
     // }
