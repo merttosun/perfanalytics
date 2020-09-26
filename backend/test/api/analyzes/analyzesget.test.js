@@ -21,20 +21,27 @@ describe("get /api/analyzes", () => {
       .catch((err) => done(err));
   });
 
-  const targetURL = "http://localhost:3000/";
+  const siteUrl = "http://localhost:3000/";
   const fromDate = "2020-09-20T10:20:30.000Z";
   const toDate = "2020-09-24T23:00:00.123Z";
 
   it("OK, getting analyzes work", (done) => {
     request(app)
       .get("/api/analyzes")
-      .query({ targetURL, fromDate, toDate })
+      .query({ siteUrl, fromDate, toDate })
       .then((res) => {
         expect(res.statusCode).to.equal(200);
         done();
-      })
-      .catch((error) => {
-        expect(error.statusCode).to.equal(400);
+      });
+  });
+
+  it("OK, getting analyzes throwing error", (done) => {
+    request(app)
+      .get("/api/analyzes")
+      .query({ siteUrl: null, fromDate: null, toDate })
+      .then((res) => {
+        expect(res.statusCode).to.equal(500);
+        done();
       });
   });
 });

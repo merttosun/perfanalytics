@@ -36,7 +36,9 @@
     "exclude": [
       "coverage",
       "node_modules",
-      "test"
+      "test",
+      "middlewares",
+      "errors"
     ],
     "all": true
   },

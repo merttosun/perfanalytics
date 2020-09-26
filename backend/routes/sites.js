@@ -1,6 +1,6 @@
 const router = require("express").Router();
 let Sites = require("../models/sites.model");
-console.log(Sites);
+// console.log(Sites);
 
 router.route("/").get((request, response) => {
   Sites.aggregate([
