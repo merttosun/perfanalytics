@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "../Chart/Chart";
 import Table from "../Table/Table";
 import TopBar from "../TopBar/TopBar";
@@ -8,8 +8,6 @@ import ChartDataModel from "../../models/ChartModel";
 
 import "./Main.css";
 
-// const sites = ["http://localhost:3000/", "qweqwewqe", "zxxccs", "gftrht"];
-
 const Main = () => {
   const axios = require("axios");
   const [isModalOpen, toggleModalStatus] = useState(false);
@@ -18,6 +16,16 @@ const Main = () => {
   const [tableLoadingStatus, setTableLoadingStatus] = useState(false);
   const [tableBulkData, setTableData] = useState([]);
   const [sites, setSites] = useState(["http://localhost:3000/"]);
+
+  useEffect(() => {
+    async function fetchSites() {
+      const result = await axios("http://localhost:5000/api/sites/");
+      console.log("result", result);
+      setSites(result.data);
+    }
+    fetchSites();
+  }, []);
+
   const handleModalStatus = (value) => {
     toggleModalStatus(value);
   };
@@ -41,12 +49,6 @@ const Main = () => {
     }
   };
 
-  const fetchUrls = async (params) => {
-    const res = await axios.get("http://localhost:5000/api/analyzes/sites");
-    if (res.data) {
-      console.log(res.data);
-    }
-  };
   const prepareChartsData = (bigData) => {
     let ttfbChartInstance = new ChartDataModel({
       bgColor: "#4285f4",
@@ -70,12 +72,7 @@ const Main = () => {
       label: "Window Load",
     });
     let resourcesData = [];
-    let siteUrls = [];
     bigData.forEach((data) => {
-      console.log(data.targetURL);
-      if (!siteUrls.includes(data.targetURL)) {
-        siteUrls.push(data.targetURL);
-      }
       let date = new Date(data.createdAt);
       let h = (date.getHours() < 10 ? "0" : "") + date.getHours();
       let m = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
@@ -94,8 +91,6 @@ const Main = () => {
       setTableData(resourcesData);
       setTableLoadingStatus(false);
     });
-    setSites(siteUrls);
-    console.log("sites", sites);
     setChartsData({
       ttfbChartInstance,
       fcpChartInstance,

@@ -4,7 +4,7 @@ import "./SiteSelector.css";
 const SiteSelector = (props) => {
   const [selectedSiteUrl, setSelectedSiteUrl] = useState("qwe");
   const handleSiteSelect = (e) => {
-    setSelectedSiteUrl(e.target.value);
+    setSelectedSiteUrl(e.target.value.siteURL);
     props.siteSelected(selectedSiteUrl);
   };
   const siteArr = props.sites.map((site) => site);
@@ -18,9 +18,9 @@ const SiteSelector = (props) => {
           onChange={(e) => handleSiteSelect(e)}
           data-testid="sites-dropdown"
         >
-          {siteArr.map((siteUrl, key) => (
-            <option value={siteUrl} key={key}>
-              {"test" + (key + 1) + " " + siteUrl}
+          {siteArr.map((site, key) => (
+            <option value={site.siteURL} key={site.siteURL}>
+              {"test" + (key + 1) + " " + site.siteURL}
             </option>
           ))}
         </select>

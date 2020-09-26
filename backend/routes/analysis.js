@@ -7,7 +7,7 @@ router.route("/").get((request, response) => {
     targetURL: request.query.siteUrl,
     createdAt: { $gte: request.query.fromDate, $lte: request.query.toDate },
   })
-    .then((analyzes) => response.json(analyzes).send(analyzes))
+    .then((analyzes) => response.send(analyzes))
     .catch((error) => response.status(400).send(error));
 });
 

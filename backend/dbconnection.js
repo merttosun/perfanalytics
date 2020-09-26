@@ -31,13 +31,10 @@ function connect(URI) {
         useCreateIndex: true,
         useUnifiedTopology: true,
       })
-      .then((res, err) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(["db connection done", res]);
-        }
-      });
+      .then((res) => {
+        resolve(["db connection done", res]);
+      })
+      .catch((err) => reject(err));
     // }
   });
 }

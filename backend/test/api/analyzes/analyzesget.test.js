@@ -30,8 +30,6 @@ describe("get /api/analyzes", () => {
       .get("/api/analyzes")
       .query({ targetURL, fromDate, toDate })
       .then((res) => {
-        const body = res.body;
-        console.log("RESPONSE", res);
         expect(res.statusCode).to.equal(200);
         done();
       })
