@@ -32,8 +32,12 @@ app.use("/api/analyzes", router);
 
 app.use(express.static("./perfanalyticjs"));
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("perfanalyticsdashboard/build"));
-  app.get("*");
+  app.use("/", express.static("perfanalyticsdashboard/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "perfanalyticsdashboard", "build", "index.html")
+    );
+  });
 }
 
 let middleware = new ErrorMiddleware();
