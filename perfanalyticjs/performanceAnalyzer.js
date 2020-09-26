@@ -41,7 +41,7 @@ function getResourceRootTimeInfo(performance) {
   return resources;
 }
 function saveAnalysisResult(payload) {
-  fetch(`https://performanceanalyticsdemoapp.herokuapp.com/api/analyzes/save`, {
+  fetch(`https://performanceanalytics.herokuapp.com/api/analyzes/save`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function saveAnalysisResult(payload) {
     });
 }
 function saveSiteUrl() {
-  fetch(`https://performanceanalyticsdemoapp.herokuapp.com/api/sites/save`, {
+  fetch(`https://performanceanalytics.herokuapp.com/api/sites/save`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",

@@ -19,7 +19,7 @@ const Main = () => {
   useEffect(() => {
     async function fetchSites() {
       const result = await axios(
-        "https://performanceanalyticsdemoapp.herokuapp.com/api/sites/"
+        "https://performanceanalytics.herokuapp.com/api/sites/"
       );
       setSites(result.data);
     }
@@ -38,7 +38,7 @@ const Main = () => {
   const fetchAnalyzes = async (params) => {
     setTableLoadingStatus(true);
     const res = await axios.get(
-      `https://performanceanalyticsdemoapp.herokuapp.com/api/analyzes/`,
+      `https://performanceanalytics.herokuapp.com/api/analyzes/`,
       {
         params: {
           siteUrl: params.siteUrl,
