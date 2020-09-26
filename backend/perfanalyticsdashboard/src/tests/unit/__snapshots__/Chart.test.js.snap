@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly date component 1`] = `
+<div
+  className="chart-wrapper"
+  data-testid="chart"
+>
+  
+</div>
+`;

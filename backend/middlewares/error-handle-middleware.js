@@ -3,7 +3,7 @@ const AppError = require("../errors/app-error");
 class ErrorHandlerMiddleware {
   handleError(err, req, res, next) {
     if (err instanceof AppError) {
-      console.log("****************AppError: " + err.getMessage());
+      console.log("AppError: " + err.getMessage());
       return res
         .status(err.status)
         .error(err.getCode(), err.getMessage(), null);

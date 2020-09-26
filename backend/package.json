@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node server.js",
     "test": "nyc mocha --timeout 10000  --recursive --exit",
-    "coverage": "nyc report --reporter=text-lcov test"
+    "coverage": "nyc report --reporter=text-lcov test",
+    "build": "cd perfanalyticsdashboard && npm run build",
+    "install-client": "cd perfanalyticsdashboard && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build"
   },
   "author": "mert.tosun@windowslive.com",
   "license": "ISC",

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="resources-table"
+  data-testid="table"
+>
+  <tr
+    className="header-row"
+  >
+    <th>
+      test url for snapshot
+    </th>
+    <th>
+      test duration label for snapshot
+    </th>
+    <th>
+      type
+    </th>
+    <th>
+      Transfer Size2
+    </th>
+  </tr>
+  <div
+    className="table-content"
+  >
+    <div
+      className="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
+      role="progressbar"
+      style={
+        Object {
+          "height": 40,
+          "width": 40,
+        }
+      }
+    >
+      <svg
+        className="MuiCircularProgress-svg"
+        viewBox="22 22 44 44"
+      >
+        <circle
+          className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+          cx={44}
+          cy={44}
+          fill="none"
+          r={20.2}
+          strokeWidth={3.6}
+          style={Object {}}
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="paginator-wrapper"
+  >
+    <nav
+      aria-label="pagination navigation"
+      className="MuiPagination-root paginator"
+    >
+      <ul
+        className="MuiPagination-ul"
+      >
+        <li>
+          <button
+            aria-label="Go to previous page"
+            className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-rounded Mui-disabled Mui-disabled"
+            disabled={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={-1}
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root MuiPaginationItem-icon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+              />
+            </svg>
+          </button>
+        </li>
+        <li>
+          <button
+            aria-label="Go to next page"
+            className="MuiButtonBase-root MuiPaginationItem-root MuiPaginationItem-page MuiPaginationItem-outlined MuiPaginationItem-rounded Mui-disabled Mui-disabled"
+            disabled={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={-1}
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root MuiPaginationItem-icon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+              />
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+`;

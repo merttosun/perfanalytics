@@ -17,13 +17,17 @@ router.route("/").get((request, response) => {
 });
 
 router.route("/save").post((request, response) => {
+  console.log("/save");
   const siteURL = request.body.siteUrl;
   const newSite = new Sites({
     siteURL,
   });
   newSite
     .save()
-    .then((site) => response.status(201).send(site))
+    .then((site) => {
+      console.log("/save then");
+      response.status(201).send(site);
+    })
     .catch((error) => response.status(400).send(error));
 });
 

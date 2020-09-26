@@ -1,0 +1,12 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  /* justify-content: space-evenly; */
+}

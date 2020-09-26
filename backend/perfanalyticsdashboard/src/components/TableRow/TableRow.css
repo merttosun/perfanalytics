@@ -1,0 +1,30 @@
+.table-row-wrapper,
+.table-row {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #c5c1c1;
+  height: 40px;
+}
+.table-row:hover {
+  background: #4285f4;
+  color: white;
+  cursor: pointer;
+}
+.darker {
+  background: rgb(226, 226, 233);
+}
+.row-column {
+  width: 14%;
+  display: flex;
+  align-items: center;
+}
+.row-column:first-child {
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+.column-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
