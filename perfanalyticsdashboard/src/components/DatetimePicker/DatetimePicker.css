@@ -2,10 +2,10 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin-left: 20px;
+  margin-left: 40px;
 }
 .datetimepicker {
-  width: 240px;
+  width: 234px;
   cursor: pointer;
   border: 1px solid#bdbbbb;
   background: #f8f8f8;
