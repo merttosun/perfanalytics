@@ -4,14 +4,24 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  width: calc(40px + 90%);
+  width: 90%;
   border-radius: 6px 6px 0 0;
   margin-top: 30px;
 }
-.datetimepickers-wrapper {
+.buttons-wrapper {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
+
+  margin-bottom: 10px;
+}
+.datetimepickers-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 .from-dtp {
   margin-right: 20px;
@@ -19,7 +29,7 @@
 .save-config-button {
   box-sizing: border-box;
   outline: none;
-  width: 120px;
+  width: 160px;
   background: #4285f4;
   color: white;
   border: none;

@@ -4,24 +4,32 @@
   display: flex;
   border-bottom: 1px solid #c5c1c1;
   height: 40px;
+  text-overflow: ellipsis;
 }
 .table-row:hover {
   background: #4285f4;
   color: white;
   cursor: pointer;
 }
+.table-row:hover .row-column {
+  border-right: 1px dashed white;
+}
 .darker {
   background: rgb(226, 226, 233);
 }
 .row-column {
-  width: 14%;
+  width: 200px;
+  margin: 0 5%;
   display: flex;
+  overflow: hidden;
   align-items: center;
+  /* justify-content: center; */
 }
 .row-column:first-child {
   flex-grow: 1;
   justify-content: flex-start;
   padding-left: 10px;
+  margin: 0;
 }
 .column-box {
   display: flex;

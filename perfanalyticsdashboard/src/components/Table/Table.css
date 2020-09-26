@@ -26,7 +26,9 @@ th:first-child {
   padding-left: 6px;
 }
 th {
-  padding-top: 3px;
-  width: 14%;
-  text-align: left;
+  width: 200px;
+  margin: 0 5%;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
 }

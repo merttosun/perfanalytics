@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "./SiteSelector.css";
 
 const SiteSelector = (props) => {
-  const [selectedSiteUrl, setSelectedSiteUrl] = useState("qwe");
   const handleSiteSelect = (e) => {
-    setSelectedSiteUrl(e.target.value.siteURL);
-    props.siteSelected(selectedSiteUrl);
+    props.siteSelected(e.target.value);
   };
   const siteArr = props.sites.map((site) => site);
   return (
@@ -14,7 +12,7 @@ const SiteSelector = (props) => {
       <div className="site-selector">
         <select
           className="dropdown"
-          value={selectedSiteUrl}
+          value={props.selectedSiteUrl}
           onChange={(e) => handleSiteSelect(e)}
           data-testid="sites-dropdown"
         >

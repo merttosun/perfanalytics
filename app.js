@@ -10,7 +10,14 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 let augmentMiddleware = new AugmentHandlerMiddleware();
 
 app.use(augmentMiddleware.augmentHandle);
@@ -23,9 +30,8 @@ app.use("/api/sites", sitesRouter);
 const router = require("./routes/analysis");
 app.use("/api/analyzes", router);
 
+app.use(express.static("perfanalyticjs"));
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./perfanalyticjs"));
-
   app.use(express.static("perfanalyticsdashboard/build"));
   app.get("*", (req, res) => {
     res.sendFile(

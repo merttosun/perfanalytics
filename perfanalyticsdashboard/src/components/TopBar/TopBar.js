@@ -4,7 +4,7 @@ import DatetimePicker from "../DatetimePicker/DatetimePicker";
 import "./TopBar.css";
 
 const TopBar = (props) => {
-  const [fromDate, setFromDate] = useState(new Date("2020-09-18T10:20:30Z"));
+  const [fromDate, setFromDate] = useState(new Date("2020-09-23T10:20:30Z"));
   const [toDate, setToDate] = useState(new Date());
   const [siteUrl, setSiteUrl] = useState("http://localhost:3000/");
 
@@ -28,6 +28,7 @@ const TopBar = (props) => {
         data-testid="siteselector"
         label="URL"
         sites={props.sites}
+        selectedSiteUrl={siteUrl}
         siteSelected={(event) => setSiteUrl(event)}
       />
       <div className="datetimepickers-wrapper" data-testid="from-dtp-id">
@@ -50,20 +51,22 @@ const TopBar = (props) => {
           pickerChange={(date) => setToDate(date)}
         ></DatetimePicker>
       </div>
-      <button
-        data-testid="between-dates-button"
-        className="save-config-button"
-        onClick={() => handleAnalyze("between-dates")}
-      >
-        {props.btn1Txt}
-      </button>
-      <button
-        data-testid="last-thirty-button"
-        className="save-config-button"
-        onClick={() => handleAnalyze("last-thirty")}
-      >
-        {props.btn2Txt}
-      </button>
+      <div className="buttons-wrapper">
+        <button
+          data-testid="between-dates-button"
+          className="save-config-button"
+          onClick={() => handleAnalyze("between-dates")}
+        >
+          {props.btn1Txt}
+        </button>
+        <button
+          data-testid="last-thirty-button"
+          className="save-config-button"
+          onClick={() => handleAnalyze("last-thirty")}
+        >
+          {props.btn2Txt}
+        </button>
+      </div>
     </div>
   );
 };
