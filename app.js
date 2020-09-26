@@ -19,8 +19,6 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("./perfanalyticjs"));
-app.use(express.static("./perfanalyticsdashboard/build"));
 
 let augmentMiddleware = new AugmentHandlerMiddleware();
 
@@ -31,6 +29,12 @@ app.use("/api/sites", sitesRouter);
 
 const router = require("./routes/analysis");
 app.use("/api/analyzes", router);
+
+app.use(express.static("./perfanalyticjs"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("perfanalyticsdashboard/build"));
+  app.get("*");
+}
 
 let middleware = new ErrorMiddleware();
 
