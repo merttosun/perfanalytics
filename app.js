@@ -24,7 +24,7 @@ const router = require("./routes/analysis");
 app.use("/api/analyzes", router);
 
 if (process.env.NODE_ENV === "production") {
-  // app.use(express.static("./perfanalyticjs"));
+  app.use(express.static("./perfanalyticjs"));
 
   app.use(express.static("perfanalyticsdashboard/build"));
   app.get("*", (req, res) => {
