@@ -30,7 +30,7 @@ describe("get /api/analyzes", () => {
       .get("/api/analyzes")
       .query({ siteUrl, fromDate, toDate })
       .then((res) => {
-        expect(res.statusCode).to.equal(200);
+        expect(res.statusCode).to.equal(201);
         done();
       });
   });

@@ -41,7 +41,9 @@
       "node_modules",
       "test",
       "middlewares",
-      "errors"
+      "errors",
+      "perfanalyticjs",
+      "perfanalyticsdashboard"
     ],
     "all": true
   },

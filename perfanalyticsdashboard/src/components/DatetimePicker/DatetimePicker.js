@@ -12,13 +12,9 @@ const convertDate = (date) => {
 };
 
 const DatetimePicker = (props) => {
-  console.log(props.value);
-
   const dtpickerValue = convertDate(props.value);
   const minLimitForSecondDtpicker = convertDate(props.minValue);
   const maxLimitForFirstDtpicker = convertDate(props.maxValue);
-
-  console.log("dtpickerValue", dtpickerValue);
   const handleDateChange = (e) => {
     props.pickerChange(new Date(e.target.value));
   };

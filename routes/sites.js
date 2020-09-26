@@ -1,6 +1,6 @@
 const router = require("express").Router();
+const AppError = require("../errors/app-error");
 let Sites = require("../models/sites.model");
-// console.log(Sites);
 
 router.route("/").get((request, response) => {
   Sites.aggregate([
@@ -17,17 +17,16 @@ router.route("/").get((request, response) => {
 });
 
 router.route("/save").post((request, response) => {
-  console.log("/save");
+  if (!request.body.siteUrl) {
+    next(new AppError("SiteURL can not be null || undefined"));
+  }
   const siteURL = request.body.siteUrl;
   const newSite = new Sites({
     siteURL,
   });
   newSite
     .save()
-    .then((site) => {
-      console.log("/save then");
-      response.status(201).send(site);
-    })
+    .then((site) => response.status(201).send(site))
     .catch((error) => response.status(400).send(error));
 });
 

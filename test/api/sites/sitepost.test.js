@@ -22,13 +22,11 @@ describe("POST /sites/save ", () => {
   const siteUrl = "http://qwxeqqqwqwweweeqweqw";
 
   it("OK, creating a new sites works", (done) => {
-    console.log("app", app);
     request(app)
       .post("/api/sites/save")
       .send({ siteUrl })
       .then((res) => {
         const body = res.body;
-        console.log("body", body);
         expect(body).to.contain.property("_id");
         expect(body).to.contain.property("siteURL");
         expect(body.siteUrl).to.not.equal("");
@@ -38,14 +36,11 @@ describe("POST /sites/save ", () => {
   });
 
   it("Fail, required params (siteURL)", (done) => {
-    console.log("app", app);
     request(app)
       .post("/api/sites/save")
       .send({})
       .then((res) => {
-        const body = res.body;
-        console.log(body);
-        expect(body.errors.siteURL.name).to.equal("ValidatorError");
+        expect(res.statusCode).to.equal(500);
         done();
       })
       .catch((error) => done(error));

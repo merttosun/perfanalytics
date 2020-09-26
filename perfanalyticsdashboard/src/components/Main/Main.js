@@ -19,9 +19,8 @@ const Main = () => {
   useEffect(() => {
     async function fetchSites() {
       const result = await axios(
-        "https://performanceanalaytics-mt.herokuapp.com//api/sites/"
+        "https://performanceanalyticsdemoapp.herokuapp.com/api/sites/"
       );
-      console.log("result", result);
       setSites(result.data);
     }
     fetchSites();
@@ -39,7 +38,7 @@ const Main = () => {
   const fetchAnalyzes = async (params) => {
     setTableLoadingStatus(true);
     const res = await axios.get(
-      `https://performanceanalaytics-mt.herokuapp.com/api/analyzes/`,
+      `https://performanceanalyticsdemoapp.herokuapp.com/api/analyzes/`,
       {
         params: {
           siteUrl: params.siteUrl,
@@ -59,7 +58,6 @@ const Main = () => {
       fill: false,
       label: "TTFB",
     });
-    console.log(ttfbChartInstance);
     let fcpChartInstance = new ChartDataModel({
       bgColor: "#10DEBF",
       fill: false,

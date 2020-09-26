@@ -36,34 +36,26 @@ describe("POST /api", () => {
     ],
   };
 
-  const targetURL = "http://testargeturl.com";
+  const targetURL = "http://testarnqweewurl.com";
 
   it("OK, creating a new analysis works", (done) => {
-    console.log("app", app);
     request(app)
       .post("/api/analyzes/save")
       .send({ targetURL, payload })
       .then((res) => {
-        const body = res.body;
-        expect(body).to.contain.property("_id");
-        expect(body).to.contain.property("targetURL");
-        expect(body).to.contain.property("createdAt");
-        expect(body).to.contain.property("updatedAt");
+        expect(res.statusCode).to.equal(201);
         done();
       })
       .catch((error) => done(error));
   });
 
   it("Fail, required params (targetURL)", (done) => {
-    console.log("app", app);
     request(app)
       .post("/api/analyzes/save")
       .send({ payload })
       .then((res) => {
-        const body = res.body;
-        expect(body.errors.targetURL.name).to.equal("ValidatorError");
+        expect(res.statusCode).to.equal(500);
         done();
-      })
-      .catch((error) => done(error));
+      });
   });
 });

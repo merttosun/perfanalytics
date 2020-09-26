@@ -3,9 +3,6 @@ const AppError = require("../errors/app-error");
 let Analysis = require("../models/analysis.model");
 
 router.route("/").get((request, response, next) => {
-  console.log("from date", request.query.fromDate);
-  console.log("to date", request.query.toDate);
-  console.log("url ", request.query.targetURL);
   if (
     !request.query.fromDate ||
     !request.query.toDate ||
@@ -17,21 +14,23 @@ router.route("/").get((request, response, next) => {
     targetURL: request.query.siteUrl,
     createdAt: { $gte: request.query.fromDate, $lte: request.query.toDate },
   })
-    .then((analyzes) => response.send(analyzes))
+    .then((analyzes) => response.status(201).send(analyzes))
     .catch((error) => {
       next(new Error(error.message));
     });
 });
 
-router.route("/save").post((request, response) => {
+router.route("/save").post((request, response, next) => {
+  if (!request.body.targetURL || !request.body.targetURL) {
+    next(new AppError("targetURL || targetURL  can not be null"));
+  }
   const targetURL = request.body.targetURL;
   const payload = request.body.payload;
   const newAnalysis = new Analysis({ targetURL, payload });
-
   newAnalysis
     .save()
-    .then((analysis) => response.status(201).send(analysis))
-    .catch(new Error(error.message));
+    .then((res) => response.status(201).send(res))
+    .catch((error) => new Error(error.message));
 });
 
 module.exports = router;
