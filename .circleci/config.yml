@@ -11,6 +11,5 @@ jobs:
       - run: npm install
       - run: npm test
       - run: npm install --prefix perfanalyticsdashboard
-      - run: npm test --prefix perfanalyticsdashboard
       - run: npm run build --prefix perfanalyticsdashboard
       - run: npm run build
