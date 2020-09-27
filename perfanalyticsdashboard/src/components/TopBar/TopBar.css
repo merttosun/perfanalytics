@@ -46,3 +46,9 @@
   font-size: 13px;
   transition: all 0.2s linear;
 }
+.no-data-warning {
+  color: red;
+  font-style: italic;
+  font-size: 12px;
+  margin-left: 20px;
+}

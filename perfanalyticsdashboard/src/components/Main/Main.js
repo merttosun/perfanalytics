@@ -15,6 +15,7 @@ const Main = () => {
   const [tableLoadingStatus, setTableLoadingStatus] = useState(false);
   const [tableBulkData, setTableData] = useState([]);
   const [sites, setSites] = useState(["http://localhost:3000/"]);
+  const [noDataWithThatConfig, setLabelVisibility] = useState(false);
 
   useEffect(() => {
     async function fetchSites() {
@@ -44,11 +45,18 @@ const Main = () => {
           siteUrl: params.siteUrl,
           fromDate: params.fromDate,
           toDate: params.toDate,
+          type: params.type,
         },
       }
     );
-    if (res.data) {
+    if (res.data && res.data.length) {
+      setLabelVisibility(false);
       prepareChartsData(res.data);
+    } else {
+      setTableLoadingStatus(false);
+      setLabelVisibility(true);
+      setChartsData({});
+      setTableData([]);
     }
   };
 
@@ -108,6 +116,7 @@ const Main = () => {
         analyzeClicked={(payload) => fetchAnalyzes(payload)}
         btn1Txt={"Analyze Between Dates"}
         btn2Txt={"Analyze Last 30 Mins"}
+        noDataWithThatConfig={noDataWithThatConfig}
       />
       <Chart
         inspected={() => handleChartInspect("ttfbChartInstance")}

@@ -10,7 +10,10 @@
   margin: 20px;
   background: white;
 }
-.inspect-button {
+.inspect-button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 25px;
   border: none;
   outline: none;
@@ -19,11 +22,20 @@
   font-weight: bold;
   cursor: pointer;
 }
-.inspect-button:hover {
+.inspect-button-wrapper:hover {
   background: #4285f4;
   color: white;
-  font-size: 14px;
   transition: all 0.4s linear;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+}
+
+.inspect-button {
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.inspect-button-wrapper:hover .inspect-button {
+  color: white;
 }

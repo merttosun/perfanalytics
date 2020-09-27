@@ -8,11 +8,20 @@ router.route("/").get((request, response, next) => {
     !request.query.toDate ||
     !request.query.siteUrl
   ) {
-    next(new AppError("SiteURL || fromDate || toDate can not be null"));
+    next(new AppError("SiteURL || fromDate || toDate || type can not be null"));
   }
+  let now = new Date();
+  let fromDate =
+    request.query.type === "last-thirty"
+      ? new Date(now.setMinutes(now.getMinutes() - 30))
+      : new Date(request.query.fromDate);
+  let toDate =
+    request.query.type === "last-thirty"
+      ? new Date()
+      : new Date(request.query.toDate);
   Analysis.find({
     targetURL: request.query.siteUrl,
-    createdAt: { $gte: request.query.fromDate, $lte: request.query.toDate },
+    createdAt: { $gte: fromDate, $lte: toDate },
   })
     .then((analyzes) => response.status(201).send(analyzes))
     .catch((error) => {

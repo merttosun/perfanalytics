@@ -10,13 +10,12 @@ export default function Chart(props) {
     <div className="chart-wrapper" data-testid="chart">
       <Line data={props.data} className="line-chart" />
       {props.showInspectButton ? (
-        <button
-          data-testid="inspect-button-id"
-          className="inspect-button"
-          onClick={() => handleInspect()}
-        >
-          Inspect
-        </button>
+        <div className="inspect-button-wrapper" onClick={() => handleInspect()}>
+          <img src="./expand.png" />
+          <button className="inspect-button" data-testid="inspect-button-id">
+            Inspect
+          </button>
+        </div>
       ) : (
         ""
       )}
