@@ -4,8 +4,8 @@ jobs:
     docker:
       - image: circleci/node:12.14.1
     
-      working_directory: ~/repo
+    working_directory: ~/repo
 
-      steps:
-        - run: npm install
-        - run: npm run test
+    steps:
+      - run: npm install
+      - run: npm run test
