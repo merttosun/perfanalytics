@@ -18,7 +18,7 @@ const SiteSelector = (props) => {
         >
           {siteArr.map((site, key) => (
             <option value={site.siteURL} key={site.siteURL}>
-              {"test" + (key + 1) + " " + site.siteURL}
+              {site.siteURL}
             </option>
           ))}
         </select>
