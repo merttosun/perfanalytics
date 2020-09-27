@@ -11,7 +11,7 @@ https://www.linkedin.com/pulse/async-vs-defer-attributes-javascript-diwaker-mish
 
 
 - perfanalyticsAPI
-	- perfanalytics api is a restful api whic saves data, poster from performanceAnalyzer.js and returns specific filtered data
+	- perfanalytics api is a restful api which saves data, poster from performanceAnalyzer.js and returns specific filtered data
 - perfanalyticsdashboard;
 	- perfanalyticsdashboard is a dashboard which show perf related metrics in a visualized way
 
