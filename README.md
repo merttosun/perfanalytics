@@ -18,11 +18,11 @@ https://www.linkedin.com/pulse/async-vs-defer-attributes-javascript-diwaker-mish
 
 # usage
 
-npm install
-node server.js
-cd perfanalyticsdashboard
-npm install
-npm run start
+# npm install
+# node server.js
+# cd perfanalyticsdashboard
+# npm install
+# npm run start
 
 make sure that you fixed fetch urls
 
