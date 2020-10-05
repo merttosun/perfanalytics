@@ -37,6 +37,9 @@ make sure that you fixed fetch urls
 	- circleci / heroku
 
 #Resources that i have used
+
+https://medium.com/@mehmeterenyener/webperf-where-to-start-web-performance-improvements-analyzing-and-benchmarking-2eb9b78d860d
+
 https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/responseStart
 
 https://attacomsian.com/blog/static-resources-express
