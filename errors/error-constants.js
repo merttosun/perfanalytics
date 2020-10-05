@@ -1,7 +1,6 @@
 class ErrorConstants {}
 
 ErrorConstants.ERR_BAD_REQUEST = 400;
-ErrorConstants.ERR_UNAUTHORIZED = 401;
 ErrorConstants.ERR_FORBIDDEN = 403;
 ErrorConstants.ERR_NOT_FOUND = 404;
 ErrorConstants.ERR_METHOD_NOT_ALLOWED = 405;
